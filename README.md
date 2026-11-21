@@ -2,6 +2,10 @@
 
 **Interactive Computer Vision Signal Purification & Adversarial Robustness Laboratory**
 
+**Live Study (Zero Backend):** [https://faro-cv.vercel.app](https://faro-cv.vercel.app) — compare Clean, Noisy, SVD, and 2D-FFT side-by-side and switch targets, seeds (`42 / 123 / 999`), and synchronized ROIs directly in the browser.
+
+> **Key Finding (`Harmonic Grid`, `seed=42`, identical Gaussian noise `σ=0.08`):** 2D-FFT Gaussian (`r=0.35`) achieves higher overall PSNR (**29.37 vs. 26.51 dB**), while Truncated SVD (`k=28`) keeps thin-line local contrast closer to the clean reference (**100.9% vs. 84.6%**). Open the [live study](https://faro-cv.vercel.app) and toggle the **Amber Detail ROI** vs. **Green Reference ROI** to verify this trade-off directly.
+
 `faro-cv` (*Faro*: Spanish for lighthouse/beacon) investigates how **Linear Algebra (Differentiable Truncated SVD)** and **2D Signal Processing (2D-FFT Radial Filtering)** attenuate image noise and adversarial perturbations—and **what exact fine details each method sacrifices in return**—inside a transactional **Finite State Machine (FSM)** and a zero-scroll desktop scientific workbench.
 
 ---

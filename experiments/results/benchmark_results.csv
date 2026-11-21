@@ -1,0 +1,25 @@
+attack,threat_model,defense,samples,flipped_count,consistent_count,conditional_recovered_count,attack_success_rate,prediction_consistency_rate,conditional_recovery_rate,labeled_samples,clean_accuracy,adversarial_accuracy,purified_accuracy,mean_psnr_db,mean_ssim,mean_linf,mean_l2,mean_hf_before,mean_hf_after,mean_cam_sim_adv,mean_cam_sim_pur,mean_purify_ms
+FGSM (Linf 12/255),Oblivious,"SVD (k=28, RGB)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,30.55,0.7146,0.0471,18.23,2.27,0.99,0.963,0.967,8.62
+FGSM (Linf 12/255),Oblivious,"SVD (k=28, Luma Y)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,27.0,0.5199,0.0471,18.23,2.27,1.92,0.963,0.965,4.68
+FGSM (Linf 12/255),Oblivious,2D-FFT Gaussian (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,31.28,0.8741,0.0471,18.23,2.27,0.13,0.963,0.966,5.41
+FGSM (Linf 12/255),Oblivious,2D-FFT Butterworth (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,31.1,0.8937,0.0471,18.23,2.27,0.06,0.963,0.967,5.5
+FGSM (Linf 12/255),Oblivious,2D-FFT Ideal (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,30.28,0.8483,0.0471,18.23,2.27,0.0,0.963,0.968,5.24
+FGSM (Linf 12/255),Oblivious,Pipeline FFT->SVD,3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,31.49,0.9076,0.0471,18.23,2.27,0.08,0.963,0.968,13.52
+PGD-10 (Linf 12/255),Oblivious,"SVD (k=28, RGB)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,33.1,0.8281,0.0471,13.21,1.49,0.75,0.951,0.968,8.49
+PGD-10 (Linf 12/255),Oblivious,"SVD (k=28, Luma Y)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,29.64,0.6581,0.0471,13.21,1.49,1.27,0.951,0.954,4.46
+PGD-10 (Linf 12/255),Oblivious,2D-FFT Gaussian (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,32.0,0.9176,0.0471,13.21,1.49,0.1,0.951,0.968,5.35
+PGD-10 (Linf 12/255),Oblivious,2D-FFT Butterworth (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,31.63,0.9248,0.0471,13.21,1.49,0.04,0.951,0.969,5.45
+PGD-10 (Linf 12/255),Oblivious,2D-FFT Ideal (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,30.83,0.8837,0.0471,13.21,1.49,0.0,0.951,0.968,5.17
+PGD-10 (Linf 12/255),Oblivious,Pipeline FFT->SVD,3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,32.05,0.9361,0.0471,13.21,1.49,0.07,0.951,0.968,13.53
+PGD-10 (Linf 12/255),Adaptive Exact (SVD),"SVD (k=28, RGB)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,29.75,0.6724,0.0471,13.46,1.43,1.09,0.956,0.956,8.55
+PGD-10 (Linf 12/255),Adaptive Exact (SVD),Pipeline FFT->SVD,3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,31.31,0.9058,0.0471,13.46,1.43,0.08,0.956,0.968,13.38
+PGD-10 (Linf 12/255),BPDA (FFT Ideal),2D-FFT Ideal (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,30.79,0.8863,0.0471,15.59,1.87,0.0,0.952,0.968,5.25
+PGD-10 (Linf 12/255),BPDA (FFT Ideal),2D-FFT Gaussian (r=0.35),3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,31.81,0.9071,0.0471,15.59,1.87,0.12,0.952,0.965,5.35
+"Patch+EoT (48px, 4x)",Oblivious,"SVD (k=28, RGB)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,21.05,0.8863,0.9745,36.44,4.55,3.6,0.97,0.969,7.2
+"Patch+EoT (48px, 4x)",Oblivious,"SVD (k=28, Luma Y)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,20.78,0.8938,0.9745,36.44,4.55,4.03,0.97,0.97,4.28
+"Patch+EoT (48px, 4x)",Oblivious,2D-FFT Gaussian (r=0.35),3,3,1,1,100.0,33.3,33.3,0,N/A,N/A,N/A,23.88,0.9228,0.9745,36.44,4.55,0.23,0.97,0.974,5.32
+"Patch+EoT (48px, 4x)",Oblivious,2D-FFT Butterworth (r=0.35),3,3,1,1,100.0,33.3,33.3,0,N/A,N/A,N/A,23.9,0.9173,0.9745,36.44,4.55,0.09,0.97,0.974,5.35
+"Patch+EoT (48px, 4x)",Oblivious,2D-FFT Ideal (r=0.35),3,3,1,1,100.0,33.3,33.3,0,N/A,N/A,N/A,23.64,0.8774,0.9745,36.44,4.55,0.0,0.97,0.975,5.26
+"Patch+EoT (48px, 4x)",Oblivious,Pipeline FFT->SVD,3,3,1,1,100.0,33.3,33.3,0,N/A,N/A,N/A,23.84,0.9136,0.9745,36.44,4.55,0.2,0.97,0.974,12.27
+"Patch+EoT (48px, 4x)",Adaptive Exact (SVD),"SVD (k=28, RGB)",3,3,0,0,100.0,0.0,0.0,0,N/A,N/A,N/A,20.89,0.8883,0.9745,36.85,4.7,3.8,0.968,0.971,7.06
+"Patch+EoT (48px, 4x)",Adaptive Exact (SVD),Pipeline FFT->SVD,3,3,1,1,100.0,33.3,33.3,0,N/A,N/A,N/A,23.91,0.9132,0.9745,36.85,4.7,0.23,0.968,0.974,12.21

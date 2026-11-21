@@ -1,0 +1,362 @@
+{
+  "generated_at": "2026-11-20 14:41 UTC",
+  "sigma": 0.08,
+  "primary_seed": 42,
+  "seeds": [
+    42,
+    123,
+    999
+  ],
+  "svd_k": 28,
+  "fft_r": 0.35,
+  "fft_grid_note": "Exact centered DFT grid via fftshift(fftfreq(n))/0.5 (unit DC gain).",
+  "latency_note": "Pipeline latency (CPU, incl. workbench spectral/SVD diagnostics).",
+  "targets": [
+    {
+      "preset_id": "harmonic_grid",
+      "display_name": "Harmonic Calibration Grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "clean_feature_contrast_luma": 0.25386,
+      "ref_roi": {
+        "x0": 16,
+        "y0": 16,
+        "x1": 52,
+        "y1": 52
+      },
+      "detail_roi": {
+        "x0": 168,
+        "y0": 94,
+        "x1": 204,
+        "y1": 130
+      },
+      "feature_fg": {
+        "x0": 168,
+        "y0": 110,
+        "x1": 204,
+        "y1": 114
+      },
+      "feature_bg": [
+        {
+          "x0": 168,
+          "y0": 104,
+          "x1": 204,
+          "y1": 108
+        },
+        {
+          "x0": 168,
+          "y0": 116,
+          "x1": 204,
+          "y1": 120
+        }
+      ],
+      "images": {
+        "clean": "/study/harmonic_grid_clean.png",
+        "noisy": "/study/harmonic_grid_s42_noisy.png",
+        "svd": "/study/harmonic_grid_s42_svd.png",
+        "fft": "/study/harmonic_grid_s42_fft.png"
+      },
+      "images_by_seed": {
+        "42": {
+          "clean": "/study/harmonic_grid_clean.png",
+          "noisy": "/study/harmonic_grid_s42_noisy.png",
+          "svd": "/study/harmonic_grid_s42_svd.png",
+          "fft": "/study/harmonic_grid_s42_fft.png"
+        },
+        "123": {
+          "clean": "/study/harmonic_grid_clean.png",
+          "noisy": "/study/harmonic_grid_s123_noisy.png",
+          "svd": "/study/harmonic_grid_s123_svd.png",
+          "fft": "/study/harmonic_grid_s123_fft.png"
+        },
+        "999": {
+          "clean": "/study/harmonic_grid_clean.png",
+          "noisy": "/study/harmonic_grid_s999_noisy.png",
+          "svd": "/study/harmonic_grid_s999_svd.png",
+          "fft": "/study/harmonic_grid_s999_fft.png"
+        }
+      }
+    },
+    {
+      "preset_id": "beacon_target",
+      "display_name": "Faro Beacon Scene",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "clean_feature_contrast_luma": 0.65372,
+      "ref_roi": {
+        "x0": 16,
+        "y0": 16,
+        "x1": 52,
+        "y1": 52
+      },
+      "detail_roi": {
+        "x0": 94,
+        "y0": 84,
+        "x1": 130,
+        "y1": 120
+      },
+      "feature_fg": {
+        "x0": 109,
+        "y0": 94,
+        "x1": 115,
+        "y1": 105
+      },
+      "feature_bg": [
+        {
+          "x0": 103,
+          "y0": 94,
+          "x1": 108,
+          "y1": 105
+        },
+        {
+          "x0": 116,
+          "y0": 94,
+          "x1": 121,
+          "y1": 105
+        }
+      ],
+      "images": {
+        "clean": "/study/beacon_target_clean.png",
+        "noisy": "/study/beacon_target_s42_noisy.png",
+        "svd": "/study/beacon_target_s42_svd.png",
+        "fft": "/study/beacon_target_s42_fft.png"
+      },
+      "images_by_seed": {
+        "42": {
+          "clean": "/study/beacon_target_clean.png",
+          "noisy": "/study/beacon_target_s42_noisy.png",
+          "svd": "/study/beacon_target_s42_svd.png",
+          "fft": "/study/beacon_target_s42_fft.png"
+        },
+        "123": {
+          "clean": "/study/beacon_target_clean.png",
+          "noisy": "/study/beacon_target_s123_noisy.png",
+          "svd": "/study/beacon_target_s123_svd.png",
+          "fft": "/study/beacon_target_s123_fft.png"
+        },
+        "999": {
+          "clean": "/study/beacon_target_clean.png",
+          "noisy": "/study/beacon_target_s999_noisy.png",
+          "svd": "/study/beacon_target_s999_svd.png",
+          "fft": "/study/beacon_target_s999_fft.png"
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "seed": 42,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "Noisy (Unprocessed)",
+      "psnr_db": 21.9246,
+      "ssim": 0.362988,
+      "ref_roi_residual_std": 0.05278,
+      "feature_contrast_luma": 0.25396,
+      "feature_contrast_retained_pct": 100.0,
+      "pipeline_latency_ms": 0.0
+    },
+    {
+      "seed": 42,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "SVD-only (k=28)",
+      "psnr_db": 26.5111,
+      "ssim": 0.594036,
+      "ref_roi_residual_std": 0.03029,
+      "feature_contrast_luma": 0.25604,
+      "feature_contrast_retained_pct": 100.9,
+      "pipeline_latency_ms": 8.377
+    },
+    {
+      "seed": 42,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "2D-FFT Gaussian (r=0.35)",
+      "psnr_db": 29.3658,
+      "ssim": 0.832865,
+      "ref_roi_residual_std": 0.01559,
+      "feature_contrast_luma": 0.21476,
+      "feature_contrast_retained_pct": 84.6,
+      "pipeline_latency_ms": 5.342
+    },
+    {
+      "seed": 42,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "Noisy (Unprocessed)",
+      "psnr_db": 22.0778,
+      "ssim": 0.251202,
+      "ref_roi_residual_std": 0.05211,
+      "feature_contrast_luma": 0.63087,
+      "feature_contrast_retained_pct": 96.5,
+      "pipeline_latency_ms": 0.0
+    },
+    {
+      "seed": 42,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "SVD-only (k=28)",
+      "psnr_db": 26.2532,
+      "ssim": 0.464721,
+      "ref_roi_residual_std": 0.03246,
+      "feature_contrast_luma": 0.63088,
+      "feature_contrast_retained_pct": 96.5,
+      "pipeline_latency_ms": 8.379
+    },
+    {
+      "seed": 42,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "2D-FFT Gaussian (r=0.35)",
+      "psnr_db": 28.1609,
+      "ssim": 0.726552,
+      "ref_roi_residual_std": 0.01561,
+      "feature_contrast_luma": 0.56101,
+      "feature_contrast_retained_pct": 85.8,
+      "pipeline_latency_ms": 5.329
+    },
+    {
+      "seed": 123,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "Noisy (Unprocessed)",
+      "psnr_db": 21.949,
+      "ssim": 0.364207,
+      "ref_roi_residual_std": 0.05212,
+      "feature_contrast_luma": 0.26306,
+      "feature_contrast_retained_pct": 103.6,
+      "pipeline_latency_ms": 0.0
+    },
+    {
+      "seed": 123,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "SVD-only (k=28)",
+      "psnr_db": 26.5619,
+      "ssim": 0.596181,
+      "ref_roi_residual_std": 0.02908,
+      "feature_contrast_luma": 0.25964,
+      "feature_contrast_retained_pct": 102.3,
+      "pipeline_latency_ms": 8.34
+    },
+    {
+      "seed": 123,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "2D-FFT Gaussian (r=0.35)",
+      "psnr_db": 29.3682,
+      "ssim": 0.834337,
+      "ref_roi_residual_std": 0.01582,
+      "feature_contrast_luma": 0.2207,
+      "feature_contrast_retained_pct": 86.9,
+      "pipeline_latency_ms": 5.347
+    },
+    {
+      "seed": 123,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "Noisy (Unprocessed)",
+      "psnr_db": 22.0971,
+      "ssim": 0.251081,
+      "ref_roi_residual_std": 0.05139,
+      "feature_contrast_luma": 0.6421,
+      "feature_contrast_retained_pct": 98.2,
+      "pipeline_latency_ms": 0.0
+    },
+    {
+      "seed": 123,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "SVD-only (k=28)",
+      "psnr_db": 26.2727,
+      "ssim": 0.466354,
+      "ref_roi_residual_std": 0.03214,
+      "feature_contrast_luma": 0.63925,
+      "feature_contrast_retained_pct": 97.8,
+      "pipeline_latency_ms": 8.282
+    },
+    {
+      "seed": 123,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "2D-FFT Gaussian (r=0.35)",
+      "psnr_db": 28.1509,
+      "ssim": 0.727311,
+      "ref_roi_residual_std": 0.01558,
+      "feature_contrast_luma": 0.56791,
+      "feature_contrast_retained_pct": 86.9,
+      "pipeline_latency_ms": 5.416
+    },
+    {
+      "seed": 999,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "Noisy (Unprocessed)",
+      "psnr_db": 21.9636,
+      "ssim": 0.365169,
+      "ref_roi_residual_std": 0.05263,
+      "feature_contrast_luma": 0.25203,
+      "feature_contrast_retained_pct": 99.3,
+      "pipeline_latency_ms": 0.0
+    },
+    {
+      "seed": 999,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "SVD-only (k=28)",
+      "psnr_db": 26.5934,
+      "ssim": 0.597913,
+      "ref_roi_residual_std": 0.02932,
+      "feature_contrast_luma": 0.25203,
+      "feature_contrast_retained_pct": 99.3,
+      "pipeline_latency_ms": 8.252
+    },
+    {
+      "seed": 999,
+      "image": "harmonic_grid",
+      "feature_label": "Horizontal reticle line (y=110..113)",
+      "method": "2D-FFT Gaussian (r=0.35)",
+      "psnr_db": 29.3719,
+      "ssim": 0.834591,
+      "ref_roi_residual_std": 0.01591,
+      "feature_contrast_luma": 0.21264,
+      "feature_contrast_retained_pct": 83.8,
+      "pipeline_latency_ms": 5.308
+    },
+    {
+      "seed": 999,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "Noisy (Unprocessed)",
+      "psnr_db": 22.118,
+      "ssim": 0.252142,
+      "ref_roi_residual_std": 0.05197,
+      "feature_contrast_luma": 0.65017,
+      "feature_contrast_retained_pct": 99.5,
+      "pipeline_latency_ms": 0.0
+    },
+    {
+      "seed": 999,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "SVD-only (k=28)",
+      "psnr_db": 26.2562,
+      "ssim": 0.465299,
+      "ref_roi_residual_std": 0.03183,
+      "feature_contrast_luma": 0.65108,
+      "feature_contrast_retained_pct": 99.6,
+      "pipeline_latency_ms": 8.404
+    },
+    {
+      "seed": 999,
+      "image": "beacon_target",
+      "feature_label": "Lighthouse window slit (x=109..115, y=94..105)",
+      "method": "2D-FFT Gaussian (r=0.35)",
+      "psnr_db": 28.1826,
+      "ssim": 0.727888,
+      "ref_roi_residual_std": 0.01578,
+      "feature_contrast_luma": 0.57436,
+      "feature_contrast_retained_pct": 87.9,
+      "pipeline_latency_ms": 5.347
+    }
+  ]
+}

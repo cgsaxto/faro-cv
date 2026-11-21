@@ -1,0 +1,19 @@
+seed,image,feature_label,method,psnr_db,ssim,ref_roi_residual_std,feature_contrast_luma,feature_contrast_retained_pct,pipeline_latency_ms
+42,harmonic_grid,Horizontal reticle line (y=110..113),Noisy (Unprocessed),21.9246,0.362988,0.05278,0.25396,100.0,0.0
+42,harmonic_grid,Horizontal reticle line (y=110..113),SVD-only (k=28),26.5111,0.594036,0.03029,0.25604,100.9,8.377
+42,harmonic_grid,Horizontal reticle line (y=110..113),2D-FFT Gaussian (r=0.35),29.3658,0.832865,0.01559,0.21476,84.6,5.342
+42,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",Noisy (Unprocessed),22.0778,0.251202,0.05211,0.63087,96.5,0.0
+42,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",SVD-only (k=28),26.2532,0.464721,0.03246,0.63088,96.5,8.379
+42,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",2D-FFT Gaussian (r=0.35),28.1609,0.726552,0.01561,0.56101,85.8,5.329
+123,harmonic_grid,Horizontal reticle line (y=110..113),Noisy (Unprocessed),21.949,0.364207,0.05212,0.26306,103.6,0.0
+123,harmonic_grid,Horizontal reticle line (y=110..113),SVD-only (k=28),26.5619,0.596181,0.02908,0.25964,102.3,8.34
+123,harmonic_grid,Horizontal reticle line (y=110..113),2D-FFT Gaussian (r=0.35),29.3682,0.834337,0.01582,0.2207,86.9,5.347
+123,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",Noisy (Unprocessed),22.0971,0.251081,0.05139,0.6421,98.2,0.0
+123,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",SVD-only (k=28),26.2727,0.466354,0.03214,0.63925,97.8,8.282
+123,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",2D-FFT Gaussian (r=0.35),28.1509,0.727311,0.01558,0.56791,86.9,5.416
+999,harmonic_grid,Horizontal reticle line (y=110..113),Noisy (Unprocessed),21.9636,0.365169,0.05263,0.25203,99.3,0.0
+999,harmonic_grid,Horizontal reticle line (y=110..113),SVD-only (k=28),26.5934,0.597913,0.02932,0.25203,99.3,8.252
+999,harmonic_grid,Horizontal reticle line (y=110..113),2D-FFT Gaussian (r=0.35),29.3719,0.834591,0.01591,0.21264,83.8,5.308
+999,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",Noisy (Unprocessed),22.118,0.252142,0.05197,0.65017,99.5,0.0
+999,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",SVD-only (k=28),26.2562,0.465299,0.03183,0.65108,99.6,8.404
+999,beacon_target,"Lighthouse window slit (x=109..115, y=94..105)",2D-FFT Gaussian (r=0.35),28.1826,0.727888,0.01578,0.57436,87.9,5.347

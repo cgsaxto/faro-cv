@@ -17,14 +17,16 @@ To make the denoising vs. detail-preservation trade-off directly inspectable, bo
 ![Controlled SVD vs. 2D-FFT denoising and detail-preservation comparison on Synthetic calibration images](docs/assets/detail-tradeoff-comparison.png)
 *Synthetic calibration images (`harmonic_grid`, `beacon_target`, 224×224) under identical Gaussian noise (`σ=0.08`, `seed=42`). Reproducible via `make detail-study`.*
 
-| Synthetic Calibration Image | Target Thin Feature | Method | PSNR (dB) | SSIM | Ref ROI Residual σ | Feature ΔL (Y) | Contrast Retained | Pipeline Latency (ms, CPU incl. diagnostics) |
+| Synthetic Calibration Image | Target Thin Feature | Method | PSNR (dB) | SSIM | Ref ROI Residual σ | Feature ΔL (Y) | Contrast Retained | Approx. Pipeline Latency (CPU, incl. diagnostics) |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| `harmonic_grid` | Horizontal reticle line (`y=110..113`) | Noisy (Unprocessed) | 21.92 | 0.3630 | 0.0528 | 0.2540 | 100.0% | 0.00 |
-| `harmonic_grid` | Horizontal reticle line (`y=110..113`) | SVD-only (`k=28`) | 26.51 | 0.5940 | 0.0303 | 0.2560 | **100.9%** | 8.40 |
-| `harmonic_grid` | Horizontal reticle line (`y=110..113`) | 2D-FFT Gaussian (`r=0.35`) | **29.37** | **0.8329** | **0.0156** | 0.2148 | 84.6% | **5.33** |
-| `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | Noisy (Unprocessed) | 22.08 | 0.2512 | 0.0521 | 0.6309 | 96.5% | 0.00 |
-| `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | SVD-only (`k=28`) | 26.25 | 0.4647 | 0.0325 | 0.6309 | **96.5%** | 8.32 |
-| `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | 2D-FFT Gaussian (`r=0.35`) | **28.16** | **0.7266** | **0.0156** | 0.5610 | 85.8% | **5.29** |
+| `harmonic_grid` | Horizontal reticle line (`y=110..113`) | Noisy (Unprocessed) | 21.92 | 0.3630 | 0.0528 | 0.2540 | 100.0% | — |
+| `harmonic_grid` | Horizontal reticle line (`y=110..113`) | SVD-only (`k=28`) | 26.51 | 0.5940 | 0.0303 | 0.2560 | **100.9%** | ~8.4 ms |
+| `harmonic_grid` | Horizontal reticle line (`y=110..113`) | 2D-FFT Gaussian (`r=0.35`) | **29.37** | **0.8329** | **0.0156** | 0.2148 | 84.6% | **~5.3 ms** |
+| `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | Noisy (Unprocessed) | 22.08 | 0.2512 | 0.0521 | 0.6309 | 96.5% | — |
+| `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | SVD-only (`k=28`) | 26.25 | 0.4647 | 0.0325 | 0.6309 | **96.5%** | ~8.4 ms |
+| `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | 2D-FFT Gaussian (`r=0.35`) | **28.16** | **0.7266** | **0.0156** | 0.5610 | 85.8% | **~5.3 ms** |
+
+*Exact per-run CPU timings (mean of 20 runs after 5 warmup passes) are recorded in the auto-generated [detail_tradeoff_summary.md](experiments/results/detail_tradeoff_summary.md) and [detail_tradeoff.csv](experiments/results/detail_tradeoff.csv).*
 
 ### Factual Observations
 - **Whole-image fidelity, Reference ROI residual & pipeline latency favor 2D-FFT Gaussian (`r=0.35`)**: Across both synthetic calibration images, 2D-FFT Gaussian achieves higher PSNR (`+1.91` to `+2.86 dB`), higher SSIM (`+0.24` to `+0.26`), roughly half the Reference ROI luminance residual (`σ=0.0156` vs. `0.0303–0.0325`), and lower full-pipeline CPU latency (`~5.3 ms` vs. `~8.4 ms`, including workbench spectral/SVD diagnostics).
@@ -64,7 +66,7 @@ To make the denoising vs. detail-preservation trade-off directly inspectable, bo
 > **Scope note**: The deterministic adversarial ablation (`make benchmark`) runs on `n=3` unlabeled synthetic 224×224 calibration targets with offline deterministically seeded (`seed=42`) `ResNet-18` weights to verify pipeline reproducibility, signal-domain purification trade-offs, and white-box adaptive gradient flow. Classification accuracy on real photos should be evaluated with `--pretrained --image-dir <dir> --labels-csv <labels.csv>`. Full split tables are in [docs/TECHNICAL_REPORT.md](docs/TECHNICAL_REPORT.md) and [experiments/results/benchmark_results.csv](experiments/results/benchmark_results.csv).
 
 1. **White-Box Adaptive Subspace Alignment**: Against oblivious PGD-10 (`L∞ = 12/255`, `n=3`), RGB SVD (`k=28`) achieves `33.10 dB` PSNR / `0.8281` SSIM and halves HF energy (`1.50% → 0.76%`). Under **Exact Adaptive** PGD-10 differentiating directly through `f(g(x))`, SVD fidelity drops to `29.75 dB` PSNR / `0.6724` SSIM with `76%` of HF perturbation surviving (`1.44% → 1.10%`).
-2. **Chrominance Bypass**: Luminance-only SVD (`k=28`, BT.601 $Y$) is ~1.9× faster (`4.76 ms` vs. `9.22 ms`), but incurs a `-3.46 dB` PSNR / `-0.170` SSIM drop (`29.64 dB` / `0.6581`) on RGB PGD-10 because perturbations in $C_b / C_r$ bypass luminance projection.
+2. **Chrominance Bypass**: Luminance-only SVD (`k=28`, BT.601 $Y$) is ~1.9× faster (`~4.8 ms` vs. `~9.2 ms`), but incurs a `-3.46 dB` PSNR / `-0.170` SSIM drop (`29.64 dB` / `0.6581`) on RGB PGD-10 because perturbations in $C_b / C_r$ bypass luminance projection.
 3. **Global SVD vs. Localized Patches**: Against 48×48px EoT patches (`n=3`), `2D-FFT Gaussian` (`23.88 dB` PSNR / `0.9227` SSIM, HF `4.56% → 0.23%`, conditional recovery `1/3`) outperforms global `SVD` (`21.05 dB` / `0.8863`, HF `4.56% → 3.60%`, conditional recovery `0/3`), which exhibits row/column rank-truncation ghosting streaks.
 
 ---

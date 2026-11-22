@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { BookmarkPlus, Cpu, History, RotateCcw } from "lucide-react";
+import { BookmarkPlus, Cpu, ExternalLink, History, RotateCcw } from "lucide-react";
 import type {
   FSMWireState,
   LabState,
   OperatorDeviceProfile,
   SnapshotSummary,
 } from "@/types/workbench";
+
+const GITHUB_QUICKSTART_URL = "https://github.com/cgsaxto/faro-cv#quickstart";
 
 interface TopInstrumentBarProps {
   activeView: "study" | "lab";
@@ -86,26 +88,41 @@ export function TopInstrumentBar({
           <button
             type="button"
             onClick={() => onChangeView("study")}
-            className={`h-6 px-2.5 font-mono text-[10px] tracking-wide transition-colors ${
+            className={`h-6 px-2 sm:px-2.5 font-mono text-[10px] tracking-wide transition-colors ${
               activeView === "study"
                 ? "bg-lab-elevated text-lab-cutoff font-medium"
                 : "text-lab-muted hover:text-lab-text"
             }`}
           >
-            DENOISING STUDY
+            <span className="hidden sm:inline">DENOISING STUDY</span>
+            <span className="sm:hidden">STUDY</span>
           </button>
           <button
             type="button"
             onClick={() => onChangeView("lab")}
-            className={`h-6 px-2.5 font-mono text-[10px] tracking-wide transition-colors ${
+            title="Requires local FastAPI backend (make dev-api)"
+            className={`h-6 px-2 sm:px-2.5 font-mono text-[10px] tracking-wide transition-colors ${
               activeView === "lab"
                 ? "bg-lab-elevated text-white font-medium"
                 : "text-lab-muted hover:text-lab-text"
             }`}
           >
-            INTERACTIVE LAB
+            <span className="hidden sm:inline">INTERACTIVE LAB · LOCAL SETUP</span>
+            <span className="sm:hidden">LAB · LOCAL</span>
           </button>
         </div>
+
+        <a
+          href={GITHUB_QUICKSTART_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Run the FastAPI backend locally via GitHub Quickstart"
+          className="h-6 px-2 border border-lab-border bg-lab-bg hover:border-lab-borderStrong hover:text-white font-mono text-[10px] text-lab-muted inline-flex items-center gap-1 transition-colors shrink-0"
+        >
+          <span className="hidden md:inline">GITHUB QUICKSTART</span>
+          <span className="md:hidden">SETUP</span>
+          <ExternalLink className="w-2.5 h-2.5 text-lab-subtle" />
+        </a>
 
         {activeView === "lab" && (
           <span
@@ -180,7 +197,7 @@ export function TopInstrumentBar({
         </span>
       </div>
       ) : (
-        <div className="hidden md:flex items-center gap-2 font-mono text-[10px] text-lab-muted">
+        <div className="hidden xl:flex items-center gap-2 font-mono text-[10px] text-lab-muted">
           <span>SVD (k=28) vs. 2D-FFT GAUSSIAN (r=0.35)</span>
           <span className="text-lab-borderStrong">·</span>
           <span className="text-lab-cutoff">EXACT DFT GRID (DC=1.0)</span>
@@ -279,7 +296,7 @@ export function TopInstrumentBar({
         </button>
       </div>
       ) : (
-        <div className="hidden sm:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2">
           <span className="px-2 py-1 border border-lab-border bg-lab-bg font-mono text-[10px] text-lab-signal">
             STATIC VIEW · ZERO BACKEND
           </span>

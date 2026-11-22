@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, X } from "lucide-react";
+import { AlertTriangle, ExternalLink, Info, X } from "lucide-react";
 import { ControlRail } from "@/components/ControlRail";
 import { DenoisingStudyView } from "@/components/DenoisingStudyView";
 import { FftSpectrumPanel } from "@/components/FftSpectrumPanel";
@@ -42,6 +42,7 @@ export function Workbench() {
   const [activeView, setActiveView] = useState<"study" | "lab">("study");
   const [payload, setPayload] = useState<WorkbenchPayload | null>(null);
   const [wsConnected, setWsConnected] = useState(false);
+  const [backendOffline, setBackendOffline] = useState(false);
   const [busyAction, setBusyAction] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [liveAttackStep, setLiveAttackStep] = useState<{
@@ -59,19 +60,24 @@ export function Workbench() {
 
   // Only connect to FastAPI REST/WebSocket when user switches into Interactive Lab mode
   useEffect(() => {
-    if (activeView !== "lab") return;
+    if (activeView !== "lab") {
+      setBackendOffline(false);
+      return;
+    }
     let active = true;
     setErrorMsg(null);
+    setBackendOffline(false);
     workbenchApi
       .getState()
       .then((initial) => {
-        if (active) setPayload(initial);
-      })
-      .catch((err: unknown) => {
         if (active) {
-          setErrorMsg(
-            `Interactive Lab backend offline (${err instanceof Error ? err.message : "unknown error"}). Start FastAPI with 'make dev-api' or stay in Denoising Study mode.`,
-          );
+          setPayload(initial);
+          setBackendOffline(false);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setBackendOffline(true);
         }
       });
 
@@ -236,6 +242,36 @@ export function Workbench() {
         <DenoisingStudyView />
       ) : (
         <>
+          {backendOffline && (
+            <div className="min-h-8 shrink-0 px-3 py-1 border-b border-lab-warn/40 bg-lab-warn/10 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-lab-text">
+              <div className="flex items-center gap-2 min-w-0">
+                <Info className="w-3.5 h-3.5 text-lab-warn shrink-0" />
+                <span>
+                  Interactive Lab runs against a local PyTorch / FastAPI backend (
+                  <code className="text-lab-warn">make dev-api</code>). The public deployment hosts the zero-backend Denoising Study.
+                </span>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href="https://github.com/cgsaxto/faro-cv#quickstart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-0.5 border border-lab-borderStrong bg-lab-bg hover:text-white inline-flex items-center gap-1 text-lab-cutoff transition-colors"
+                >
+                  <span>GITHUB QUICKSTART</span>
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActiveView("study")}
+                  className="px-2 py-0.5 border border-lab-border bg-lab-surface hover:text-white text-lab-muted transition-colors"
+                >
+                  BACK TO STUDY
+                </button>
+              </div>
+            </div>
+          )}
+
           {errorMsg && (
             <div className="h-7 shrink-0 px-3 border-b border-lab-alert/40 bg-lab-alert/10 flex items-center justify-between gap-2 font-mono text-[10px] text-lab-alert">
               <div className="flex items-center gap-2 truncate">

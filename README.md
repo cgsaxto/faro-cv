@@ -26,7 +26,7 @@ To make the denoising vs. detail-preservation trade-off directly inspectable, bo
 | `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | SVD-only (`k=28`) | 26.25 | 0.4647 | 0.0325 | 0.6309 | **96.5%** | ~8.4 ms |
 | `beacon_target` | Lighthouse slit (`x=109..115, y=94..105`) | 2D-FFT Gaussian (`r=0.35`) | **28.16** | **0.7266** | **0.0156** | 0.5610 | 85.8% | **~5.3 ms** |
 
-*Exact per-run CPU timings (mean of 20 runs after 5 warmup passes) are recorded in the auto-generated [detail_tradeoff_summary.md](experiments/results/detail_tradeoff_summary.md) and [detail_tradeoff.csv](experiments/results/detail_tradeoff.csv).*
+*CPU timings are reported as means after 5 warm-up runs: 20 timed runs for the primary seed (`42`) and 5 timed runs for each additional seed (`123`, `999`). See [detail_tradeoff.csv](experiments/results/detail_tradeoff.csv) and [detail_tradeoff_summary.md](experiments/results/detail_tradeoff_summary.md) for the exact mean latency of each configuration.*
 
 ### Factual Observations
 - **Whole-image fidelity, Reference ROI residual & pipeline latency favor 2D-FFT Gaussian (`r=0.35`)**: Across both synthetic calibration images, 2D-FFT Gaussian achieves higher PSNR (`+1.91` to `+2.86 dB`), higher SSIM (`+0.24` to `+0.26`), roughly half the Reference ROI luminance residual (`σ=0.0156` vs. `0.0303–0.0325`), and lower full-pipeline CPU latency (`~5.3 ms` vs. `~8.4 ms`, including workbench spectral/SVD diagnostics).
